@@ -1,27 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
+#include "object.h"
+#include "misc.h"
+#include "noun.h"
 
-
-struct location {
-    const char *description;
-    const char *tag;
-}
-
-// the location of the game + description
-locs[] = {
-    {"an open field", "field"},
-    {"a littel cave", "cave"}
-};
-
-#define numberOfLocations (sizeof locs / sizeof *locs)
-
-static unsigned locationOfPlayer = 0;
 
 // checs the palse you are and prints it 
 void executeLook(const char *noun) {
     if (noun != NULL && strcmp(noun, "around") == 0) {
-        printf("You are in %s.\n", locs[locationOfPlayer].description);
+        printf("You are in %s.\n", player->description);
+        listObjectsAtLocation(player->location);
     }
     else {
         printf("I don't understand what you want to see.\n");
@@ -30,19 +19,16 @@ void executeLook(const char *noun) {
 
 
 void executeGo(const char *noun) {
-    unsigned i;
-    for (i = 0; i < numberOfLocations; i++) {
-        if (noun != NULL && strcmp(noun, locs[i].tag) == 0) {
-            if (i == locationOfPlayer) {
-                printf("You can't get much closer than this.\n");
-            }
-            else {
-                printf("OK.\n");
-                locationOfPlayer = i;
-                executeLook("around");
-            }
-            return;
+    OBJECT *obj = getVisible("where you want to go", noun);
+    if (obj == NULL) {
+        /* alredy handeld by getVisible */
         }
+    else if (obj->location == NULL && obj != player->location) {
+            printf("OK.\n");
+            player->location = obj;
+            executeLook("around");
     }
-    printf("I don't understand where you whant to go.\n");
+    else {
+        printf("I don't understand where you whant to go.\n");
+    }
 }
