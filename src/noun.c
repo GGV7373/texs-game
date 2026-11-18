@@ -10,7 +10,7 @@ static bool objectHasTag(OBJECT *obj, const char *noun) {
 
 static OBJECT *getObject(const char *noun) {
     OBJECT *obj, *res = NULL;
-    for (obj = objs; obj < endOfbjs; obj++) {
+    for (obj = objs; obj < endOfObjs; obj++) {
         if (objectHasTag(obj, noun)) {
             res = obj;
         }

@@ -6,7 +6,7 @@
 #include "noun.h"
 
 
-// checs the palse you are and prints it 
+/* checks the place you are in and prints it */ 
 void executeLook(const char *noun) {
     if (noun != NULL && strcmp(noun, "around") == 0) {
         printf("You are in %s.\n", player->description);
@@ -21,7 +21,7 @@ void executeLook(const char *noun) {
 void executeGo(const char *noun) {
     OBJECT *obj = getVisible("where you want to go", noun);
     if (obj == NULL) {
-        /* alredy handeld by getVisible */
+        /* already handled by getVisible */
         }
     else if (obj->location == NULL && obj != player->location) {
             printf("OK.\n");
@@ -29,6 +29,6 @@ void executeGo(const char *noun) {
             executeLook("around");
     }
     else {
-        printf("I don't understand where you whant to go.\n");
+        printf("I don't understand where you want to go.\n");
     }
 }

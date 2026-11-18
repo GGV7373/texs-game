@@ -7,5 +7,5 @@ OBJECT objs[] = {
     {"a silver coin",   "silver"    , field },
     {"a gold coin"  ,   "gold"      , cave  },
     {"a burly guard",   "guard"     , field },
-    {"yoursef"      ,   "yourself"  , field }
+    {"yourself"     ,   "yourself"  , field }
 };

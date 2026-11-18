@@ -16,6 +16,6 @@ extern OBJECT objs[];
 #define guard       (objs + 4)
 #define player      (objs + 5)
 
-#define endOfbjs    (objs + 6)
+#define endOfObjs    (objs + 6)
 
 #endif
