@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include "object.h"
 
+OBJECT *actorHere(void) {
+    OBJECT *obj;
+    for (obj = objs; obj < endOfObjs; obj++) {
+        if (obj->location == player->location && obj != player) {
+            return obj;
+        }
+    }
+    return NULL;
+}
+
 int listObjectsAtLocation(OBJECT *location) {
     int count = 0;
     OBJECT *obj;
